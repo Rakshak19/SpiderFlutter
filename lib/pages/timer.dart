@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:numberpicker/numberpicker.dart';
@@ -21,6 +22,9 @@ class _TimerState extends State<Timer> with TickerProviderStateMixin {
 
   Widget time(){
       int hour=0;
+      int min=0;
+      int sec=0;
+
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -28,15 +32,21 @@ class _TimerState extends State<Timer> with TickerProviderStateMixin {
           Expanded(
             flex: 6,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Column(
-                   children:[
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children:[
                      Padding(
                        padding:  EdgeInsets.only(
                          bottom: 10,
                        ),
                          child: Text(
-                         'HH'
+                         'HH',
+                             style:TextStyle(
+                             fontSize: 18,
+                               fontWeight: FontWeight.bold
+                         )
                          ),
                      ),
 
@@ -55,69 +65,87 @@ class _TimerState extends State<Timer> with TickerProviderStateMixin {
                    ),
                    ],
                  ),
-
-                ],
-              )
-          ),
-          Expanded(
-            flex:1,
-              child: Column(
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children:[
                       Padding(
                         padding:  EdgeInsets.only(
                           bottom: 10,
                         ),
                         child: Text(
-                            'HH'
+                            'MM',
+                            style:TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold
+                        )
                         ),
                       ),
 
                       // ignore: missing_required_param
                       NumberPicker.integer(
-                        initialValue: hour,
+                        initialValue: min,
                         minValue: 0,
                         maxValue: 23,
                         listViewWidth: 50,
                         onChanged: (val) {
                           setState(() {
-                            hour = val;
+                            min= val;
                           });
 
                         },
                       ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children:[
+                      Padding(
+                        padding:  EdgeInsets.only(
+                          bottom: 10,
+                        ),
+                        child: Text(
+                            'SS',
+                            style:TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold
+                            )
+                        ),
+                      ),
 
+                      // ignore: missing_required_param
+                      NumberPicker.integer(
+                        initialValue: sec,
+                        minValue: 0,
+                        maxValue: 23,
+                        listViewWidth: 50,
+                        onChanged: (val) {
+                          setState(() {
+                            sec = val;
+                          });
+
+                        },
+                      ),
+                    ],
+                  ),
 
                 ],
+              ),
           ),
+          Expanded(
+            flex:1,
+            child:Text('1',
+              style: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.w600
+              ),
+            ),
           ),
           Expanded(
             flex:3,
-            child: Column(
-              children:[
-                Padding(
-                  padding:  EdgeInsets.only(
-                    bottom: 10,
-                  ),
-                  child: Text(
-                      'HH'
-                  ),
-                ),
+           child:Row(
+             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
-                // ignore: missing_required_param
-                NumberPicker.integer(
-                  initialValue: hour,
-                  minValue: 0,
-                  maxValue: 23,
-                  listViewWidth: 50,
-                  onChanged: (val) {
-                    setState(() {
-                      hour = val;
-                    });
-
-                  },
-                ),
-              ],
-            ),
+           ),
 
           ),
     ]
